@@ -1,19 +1,11 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import 'react-tabs/style/react-tabs.css';
 
+import MacroChart from './MacroChart.Component';
 
-var StepsContainerOverflow = 'hidden';
-
-const ChangeOverflow = () =>{
-    if(StepsContainerOverflow == 'hidden'){
-        StepsContainerOverflow = 'visible'
-    }else if(StepsContainerOverflow == 'visible'){
-        StepsContainerOverflow = 'hidden'
-    }
-
-    console.log('changeoverflow triggered');
-}
 
 const Div = styled.div`
     border-radius: 10px;
@@ -43,13 +35,14 @@ const Title = styled.h1`
     margin-top: 0px;
 `
 
-const StepsContainer = styled.div`
+const DetailsContainer = styled.div`
     border: 1px solid blue;
     overflow: auto;
     text-overflow: ellipsis;
-    width: 100%;
+    width: 425px;
     
     max-height: 300px;
+    height: 300px;
     margin-top: 20px;
 `
 
@@ -98,20 +91,41 @@ const StepsLi = styled.li`
 
 const Recipe = ({title, calories, image, ingredients}) => {
 
-    const [stepsView, setStepsView] = useState(0);
-
     return(
         <Div>
             <Title>{title}</Title>
             <Image src={image} alt="" />
-            <StepsContainer onClick={ChangeOverflow}>
-            <Steps>
-                {ingredients.map((ingredient, index) => (
-                    <StepsLi key={index}>{ingredient.text}</StepsLi>
-                ))}
-            </Steps>
+            
+            <Tabs>
+                <TabList>
+                    <Tab>Steps</Tab>
+                    <Tab>Macros</Tab>
+                    <Tab>Daily Nutrients</Tab>
+                </TabList>
 
-            </StepsContainer>
+                <TabPanel> 
+                    <DetailsContainer>
+                        <Steps>
+                            {ingredients.map((ingredient, index) => (
+                                <StepsLi key={index}>{ingredient.text}</StepsLi>
+                            ))}
+                        </Steps>
+                    </DetailsContainer>
+                </TabPanel>
+
+                <TabPanel>
+                    <DetailsContainer>
+                        <MacroChart />
+                    </DetailsContainer>
+                </TabPanel>
+
+                <TabPanel>
+                    <DetailsContainer>
+
+                    </DetailsContainer>
+                </TabPanel>
+            </Tabs>
+            
             
             <p>Cal. {calories}</p>
             

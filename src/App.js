@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import styled from 'styled-components';
-import Recipe from './Components/Recipe.Component';
+import Recipe from './Components/RecipeWithTabs.Component';
 
 // STYLED COMPONENTS START
 const AppContainer = styled.div`
