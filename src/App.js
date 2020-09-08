@@ -1,6 +1,40 @@
 import React, {useEffect, useState} from 'react';
-import './App.css';
-import Recipe from './Components/Recipes.Component';
+import styled from 'styled-components';
+import Recipe from './Components/Recipe.Component';
+
+// STYLED COMPONENTS START
+const AppContainer = styled.div`
+  min-height: 100vh;
+  background-image: linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%);
+`
+const SearchForm = styled.form`
+  min-height: 10vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+
+const SearchBar = styled.input`
+  width: 50%;
+  border: 1px solid gray;
+  padding: 10px;
+`
+
+const SearchButton = styled.button`
+  background: lightcoral;
+  border: 1px solid gray;
+  padding: 10px 20px;
+  color: whitesmoke;
+`
+
+const RecipesContainer = styled.div`
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+`
+// STYLED COMPONENTS END
+
+
 
 const App = () => {
 
@@ -40,16 +74,17 @@ const App = () => {
   }
 
   return(
-    <div className="App">
-      <form onSubmit={getSearch} className="search-form">
-        <input 
-          className="search-bar" 
+    <AppContainer>
+      <SearchForm onSubmit={getSearch}>
+        <SearchBar  
           type="text" 
           value={search}
           onChange={updateSearch}
         />
-        <button className="search-button" type="submit">Search</button>
-      </form>
+        <SearchButton 
+          type="submit">Search</SearchButton>
+      </SearchForm>
+      <RecipesContainer >
       {recipes.map(recipe => (
         <Recipe 
           key={recipe.recipe.label} 
@@ -59,7 +94,8 @@ const App = () => {
           ingredients={recipe.recipe.ingredients}
         />
       ))}
-    </div>
+      </RecipesContainer>
+    </AppContainer>
   )
 }
 
