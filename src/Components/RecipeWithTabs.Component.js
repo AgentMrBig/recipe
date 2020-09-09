@@ -107,7 +107,7 @@ const Recipe = ({title, calories, image, ingredients, totalDaily}) => {
             <Title>{title}</Title>
             <Image src={image} alt="" />
             
-            <Tabs>
+            <Tabs style={{width: "425px"}}>
                 <TabList>
                     <Tab>Steps</Tab>
                     <Tab>Keto Macros</Tab>
