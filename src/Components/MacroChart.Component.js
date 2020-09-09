@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import {Line,Pie} from 'react-chartjs-2';
 
-const MacroChart = () => {
+const MacroChart = ({carbs, protien, fat}) => {
     const [chartData, setChartData] = useState({});
 
     const pieChart = () =>{
@@ -10,7 +10,7 @@ const MacroChart = () => {
             datasets: [
                 {
                     label: 'Macros',
-                    data: [75, 5, 20],
+                    data: [fat, carbs, protien],
                     backgroundColor:[
                         
                         'rgba(248, 235, 169, 0.85)',

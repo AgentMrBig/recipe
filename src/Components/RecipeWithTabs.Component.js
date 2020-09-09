@@ -1,11 +1,15 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import styled from 'styled-components';
 
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 
 import MacroChart from './MacroChart.Component';
+import TotalDaily from './TotalDaily.Component';
 
+
+var ketoMacros;
+var displayMacroChart = true;
 
 const Div = styled.div`
     border-radius: 10px;
@@ -88,8 +92,15 @@ const StepsLi = styled.li`
         z-index: 2;
     }
 `
+const setDisplayMacroChart = (set) => {
+    displayMacroChart = set;
+}
 
-const Recipe = ({title, calories, image, ingredients}) => {
+const Recipe = ({title, calories, image, ingredients, totalDaily}) => {
+
+    // const [ketoMacros, setKetoMacros] = useState({});
+    // const [displayMacroChart, setDisplayMacroChart] = useState(true);
+    
 
     return(
         <Div>
@@ -99,7 +110,7 @@ const Recipe = ({title, calories, image, ingredients}) => {
             <Tabs>
                 <TabList>
                     <Tab>Steps</Tab>
-                    <Tab>Macros</Tab>
+                    <Tab>Keto Macros</Tab>
                     <Tab>Daily Nutrients</Tab>
                 </TabList>
 
@@ -113,21 +124,25 @@ const Recipe = ({title, calories, image, ingredients}) => {
                     </DetailsContainer>
                 </TabPanel>
 
-                <TabPanel>
+                <TabPanel onClick={setDisplayMacroChart(true)}>
                     <DetailsContainer>
-                        <MacroChart />
+                        <TotalDaily displayFlag={displayMacroChart} totalDailyInfo={totalDaily} />
                     </DetailsContainer>
                 </TabPanel>
 
-                <TabPanel>
+                <TabPanel onClick={setDisplayMacroChart(false)}>
                     <DetailsContainer>
-
+                        <TotalDaily displayFlag={displayMacroChart} totalDailyInfo={totalDaily} />
                     </DetailsContainer>
                 </TabPanel>
             </Tabs>
             
             
-            <p>Cal. {calories}</p>
+            
+            <div>
+                <p>Cal. {calories.toFixed(2)}</p>
+                <p>Low Carb: </p>
+            </div>
             
         </Div>
     )

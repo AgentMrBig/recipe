@@ -1,0 +1,19 @@
+/* The emerging W3C standard
+   that is currently Firefox-only */
+   * {
+    scrollbar-width: thin;
+    scrollbar-color: rgb(136, 136, 177) #cdc6d8;
+  }
+  
+  /* Works on Chrome/Edge/Safari */
+  *::-webkit-scrollbar {
+    width: 12px;
+  }
+  *::-webkit-scrollbar-track {
+    background: #cdc6d8;
+  }
+  *::-webkit-scrollbar-thumb {
+    background-color: rgb(136, 136, 177);
+    border-radius: 20px;
+    border: 3px solid #cdc6d8;
+  }

@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import './App.css';
 import styled from 'styled-components';
 import Recipe from './Components/RecipeWithTabs.Component';
 
@@ -46,6 +47,7 @@ const App = () => {
   const [recipes, setRecipes] = useState([]);
   const [search, setSearch] = useState('');
   const [query, setQuery] = useState('chicken');
+  const [totalDaily, setTotalDaily] = useState({});
 
   // example Edaman api call
   const exampleReq = `https://api.edamam.com/search?q=${query}&app_id=${E_APP_ID}&app_key=${E_APP_KEY}`
@@ -59,11 +61,14 @@ const App = () => {
     const response = await fetch(exampleReq)
     const data = await response.json();
     setRecipes(data.hits);
+    setTotalDaily(data.hits[0].recipe.totalDaily);
     console.log(data);
   }
 
   const updateSearch = e => {
     setSearch(e.target.value);
+    console.log(recipes[0].recipe.totalDaily);
+   
     //console.log(search);
   }
 
@@ -71,6 +76,12 @@ const App = () => {
     e.preventDefault();
     setQuery(search);
     setSearch('');
+  }
+
+  const getTotalDaily = () => {
+    recipes.map(recipe => {
+      setTotalDaily(totalDaily, ... recipe.recipe.totalDaily);
+    })
   }
 
   return(
@@ -84,14 +95,17 @@ const App = () => {
         <SearchButton 
           type="submit">Search</SearchButton>
       </SearchForm>
-      <RecipesContainer >
-      {recipes.map(recipe => (
+      <RecipesContainer className="customScroll">
+      {recipes.map((recipe, index) => (
+        
         <Recipe 
-          key={recipe.recipe.label} 
+          key={index} 
           title={recipe.recipe.label} 
           calories={recipe.recipe.calories} 
           image={recipe.recipe.image}
           ingredients={recipe.recipe.ingredients}
+          totalDaily={recipe.recipe.totalDaily}
+          
         />
       ))}
       </RecipesContainer>

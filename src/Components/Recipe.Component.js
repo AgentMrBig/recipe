@@ -2,19 +2,6 @@ import React, {useEffect, useState} from 'react';
 import styled from 'styled-components';
 
 
-
-var StepsContainerOverflow = 'hidden';
-
-const ChangeOverflow = () =>{
-    if(StepsContainerOverflow == 'hidden'){
-        StepsContainerOverflow = 'visible'
-    }else if(StepsContainerOverflow == 'visible'){
-        StepsContainerOverflow = 'hidden'
-    }
-
-    console.log('changeoverflow triggered');
-}
-
 const Div = styled.div`
     border-radius: 10px;
     box-shadow: 0px 5px 20px rgb(71, 71, 71);
@@ -98,13 +85,13 @@ const StepsLi = styled.li`
 
 const Recipe = ({title, calories, image, ingredients}) => {
 
-    const [stepsView, setStepsView] = useState(0);
+    
 
     return(
         <Div>
             <Title>{title}</Title>
             <Image src={image} alt="" />
-            <StepsContainer onClick={ChangeOverflow}>
+            <StepsContainer>
             <Steps>
                 {ingredients.map((ingredient, index) => (
                     <StepsLi key={index}>{ingredient.text}</StepsLi>
