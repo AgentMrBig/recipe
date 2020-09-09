@@ -1,3 +1,15 @@
+A recipe app that will be used to learn new design patterns. Eventually this will become a commercial product, currently it is a UI/UX texing ground. No real set direction or path, just a vague end goal idea, just the way I like it. 
+
+The end goal idea is a low carb recipe creator/sharing/progress tracking app. Eventually the recipe cards will conform to the pin standards of Pinterest so created recipes can be shared to pinterest, which will allow me to link traffic back to my app also it will take care of recipe card format as the pin format has already been proven successful from a UX point of view.
+
+Likely features in the future will be various social "hooks" to all the most popular social media platforms. Comments/Suggestions on recipe cards for the recipes that a user creates, other users that view these recipes can interact socially via the recipe card. Integration with instacart on some level and/or other online shopping outlets, including Amazon (affiliate commission ;)). A "hot or not" like feature where recipe cards are shown one at a time, the user can swip right to stash a link to the card in their recipe book or they can swip left to pass.
+
+Many of the compenents being developed can and will be used in similar products.
+
+A LONG way to go.
+
+![](images/RECIPEAPPSCREEN1.png)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
